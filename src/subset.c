@@ -385,17 +385,17 @@ double alpha =2.9;
 	// GEnv.Freq[x][c]=   GEnv.Freq[x][c]/KnownCases;
 	Entr += pow(GEnv.Freq[x][c] ,alpha);
 	KnownCases += GEnv.Freq[x][c];	 
-	//count[i] += GEnv.Freq[x][c]-GEnv.Freq[y][c];
+	count[i] += GEnv.Freq[x][c]-GEnv.Freq[y][c];
     }
-	/*if(count[i]<0)
+	if(count[i]<0)
 	{
 		count[i] = -1 * count[i];
 	}*/
 	Entr /= KnownCases;
         Entr = (Entr -1)*q;
-	//count[i] /= KnownCases;
-	//Entr *= count[i];
-	//i++;
+	count[i] /= KnownCases;
+	Entr *= count[i];
+	i++;
 	
 	GEnv.SubsetInfo[x] /= Cases;
         GEnv.SubsetInfo[x] =  (pow(GEnv.ValFreq[x],alpha)-1) * q;
@@ -474,18 +474,18 @@ double q = 1/(1-alpha);
 	//Entr -= F * Log(F);
 	Entr += pow(F,alpha);
 	KnownCases += F;
-	//count[i] += GEnv.Freq[x][c]-GEnv.Freq[y][c];
+	count[i] += GEnv.Freq[x][c]-GEnv.Freq[y][c];
 	   }
-	/*if(count[i]<0)
+	if(count[i]<0)
 	{
 		count[i] = -1 * count[i];
-	}*/				     
+	}				     
 	Entr /= KnownCases;
     	Entr =(Entr-1)*q;
 					     
-	//count[i] /= KnownCases;					     
-	//Entr *= count[i];
-	//i++;					     
+	count[i] /= KnownCases;					     
+	Entr *= count[i];
+	i++;					     
 	GEnv.MergeEntr[x][y] = Entr;
 }
 
