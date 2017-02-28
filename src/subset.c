@@ -85,9 +85,7 @@ void EvalSubset(Attribute Att, CaseCount Cases)
 		Val, BestVal, BestGain, BestInfo, PrevGain, PrevInfo;
     int		MissingValues=0;
     CaseCount	KnownCases;
-    Boolean	Better;
-	double count[20];
-	int i=0;
+    Boolean	Better;	
 double alpha =8.9;
 double q= 1/(1-alpha);
     /*  First compute Freq[][], ValFreq[], base info, and the gain
@@ -397,6 +395,7 @@ double alpha =8.9;
         Entr = (Entr -1)*q;
 	count[i] /= KnownCases;
 	Entr *= count[i];
+	i++;
 	
 	GEnv.SubsetInfo[x] /= Cases;
         GEnv.SubsetInfo[x] =  (pow(GEnv.ValFreq[x],alpha)-1) * q;
@@ -483,6 +482,7 @@ double q = 1/(1-alpha);
 					     
 	count[i] /= KnownCases;					     
 	Entr *= count[i];
+	i++;					     
 	GEnv.MergeEntr[x][y] = Entr;
 }
 
