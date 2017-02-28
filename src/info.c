@@ -110,7 +110,7 @@ double alpha =8.9;
         Sum += pow( Sum1,alpha);
 	TotalCases += N;
     }
-	Sum /= pow(TotalCases,alpha);
+	Sum /= TotalCases;
 	Sum =(Sum -1)*q;
 	
     return Sum;
