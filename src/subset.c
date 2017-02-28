@@ -99,7 +99,7 @@ double q= 1/(1-alpha);
     ForEach(c, 1, MaxAttVal[Att])
     {
 	if ( GEnv.ValFreq[c] >= MINITEMS ) GEnv.ReasonableSubsets++;
-	     count[i] += GEnv.Freq[V1][c]-GEnv.Freq[V2][c];
+	     //count[i] += GEnv.Freq[V1][c]-GEnv.Freq[V2][c];
     }
 
     if ( ! GEnv.ReasonableSubsets )
@@ -109,18 +109,18 @@ double q= 1/(1-alpha);
 
 	return;
     }
-	if(count[i]<0)
+	/*if(count[i]<0)
 	{
 		count[i] = -1 * count[i];
-	}
+	}*/
     KnownCases  = Cases - GEnv.ValFreq[0];
     UnknownRate = GEnv.ValFreq[0] / Cases;
 
     BaseInfo = ( ! GEnv.ValFreq[0] ? GlobalBaseInfo :
 		     DiscrKnownBaseInfo(KnownCases, MaxAttVal[Att]) );
-	count[i] /= Cases;
-	BaseInfo = BaseInfo *count[i];
-	i++;
+	//count[i] /= Cases;
+	//BaseInfo = BaseInfo *count[i];
+	//i++;
     PrevGain = ComputeGain(BaseInfo, UnknownRate, MaxAttVal[Att], KnownCases);
     PrevInfo = TotalInfo(GEnv.ValFreq, 0, MaxAttVal[Att]) / Cases;
     BestVal  = PrevGain / PrevInfo;
