@@ -70,8 +70,8 @@ double count[20];
 		count[i] = -1 * count[i];
 	}
 	
-    ThisInfo /= Totalcases;
-	count[i] /= Totalcases;
+    ThisInfo /= TotalCases;
+	count[i] /= TotalCases;
 	BaseInfo = BaseInfo *count[i];
 	i++;
     /*  Set the gain in information for all cases, adjusted for unknowns  */
