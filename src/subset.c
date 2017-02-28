@@ -86,6 +86,8 @@ void EvalSubset(Attribute Att, CaseCount Cases)
     int		MissingValues=0;
     CaseCount	KnownCases;
     Boolean	Better;
+	double count[20];
+	int i=0;
 double alpha =8.9;
 double q= 1/(1-alpha);
     /*  First compute Freq[][], ValFreq[], base info, and the gain
@@ -97,6 +99,7 @@ double q= 1/(1-alpha);
     ForEach(c, 1, MaxAttVal[Att])
     {
 	if ( GEnv.ValFreq[c] >= MINITEMS ) GEnv.ReasonableSubsets++;
+	     count[i] += GEnv.Freq[V1][v]-GEnv.Freq[V2][v];
     }
 
     if ( ! GEnv.ReasonableSubsets )
@@ -106,13 +109,18 @@ double q= 1/(1-alpha);
 
 	return;
     }
-
+	if(count[i]<0)
+	{
+		count[i] = -1 * count[i];
+	}
     KnownCases  = Cases - GEnv.ValFreq[0];
     UnknownRate = GEnv.ValFreq[0] / Cases;
 
     BaseInfo = ( ! GEnv.ValFreq[0] ? GlobalBaseInfo :
 		     DiscrKnownBaseInfo(KnownCases, MaxAttVal[Att]) );
-
+	count[i] /= TotalCases;
+	BaseInfo = BaseInfo *count[i];
+	i++;
     PrevGain = ComputeGain(BaseInfo, UnknownRate, MaxAttVal[Att], KnownCases);
     PrevInfo = TotalInfo(GEnv.ValFreq, 0, MaxAttVal[Att]) / Cases;
     BestVal  = PrevGain / PrevInfo;
