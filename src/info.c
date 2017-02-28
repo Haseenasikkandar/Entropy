@@ -102,13 +102,13 @@ double alpha =4.9;
 	Sum1 = N;
         Sum += pow( Sum1,alpha);
 	TotalCases += N;
-	count[i] += GEnv.Freq[x][v]-GEnv.Freq[y][v];
+	//count[i] += GEnv.Freq[x][v]-GEnv.Freq[y][v];
     }
 	Sum /= TotalCases;
 	Sum =(Sum -1)*q;
-	count[i] /= TotalCases;
-	Sum *= count[i];
-	i++;
+	//count[i] /= TotalCases;
+	//Sum *= count[i];
+	//i++;
 	
     return Sum;
 }
