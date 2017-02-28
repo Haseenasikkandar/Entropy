@@ -63,7 +63,7 @@ double count[20];
     ForEach(v, 1, MaxVal)
     {
 	ThisInfo += TotalInfo(GEnv.Freq[v], 1, MaxClass);
-	    count[i] += GEnv.Freq[x][v]-GEnv.Freq[y][v];
+	    //count[i] += GEnv.Freq[x][v]-GEnv.Freq[y][v];
     }
 	if(count[i]<0)
 	{
@@ -72,8 +72,8 @@ double count[20];
 	
     ThisInfo /= TotalCases;
 	count[i] /= TotalCases;
-	BaseInfo = BaseInfo *count[i];
-	i++;
+	//BaseInfo = BaseInfo *count[i];
+	//i++;
     /*  Set the gain in information for all cases, adjusted for unknowns  */
 
     return ( BaseInfo <= ThisInfo ? 0.0 :
