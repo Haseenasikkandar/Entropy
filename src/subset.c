@@ -86,6 +86,8 @@ void EvalSubset(Attribute Att, CaseCount Cases)
     int		MissingValues=0;
     CaseCount	KnownCases;
     Boolean	Better;	
+double count[20];
+int i=0;
 double alpha =4.9;
 double q= 1/(1-alpha);
     /*  First compute Freq[][], ValFreq[], base info, and the gain
@@ -97,7 +99,7 @@ double q= 1/(1-alpha);
     ForEach(c, 1, MaxAttVal[Att])
     {
 	if ( GEnv.ValFreq[c] >= MINITEMS ) GEnv.ReasonableSubsets++;
-	     //count[i] += GEnv.Freq[V1][c]-GEnv.Freq[V2][c];
+	     count[i] += GEnv.Freq[V1][c]-GEnv.Freq[V2][c];
     }
 
     if ( ! GEnv.ReasonableSubsets )
@@ -107,18 +109,18 @@ double q= 1/(1-alpha);
 
 	return;
     }
-	/*if(count[i]<0)
+	if(count[i]<0)
 	{
 		count[i] = -1 * count[i];
-	}*/
+	}
     KnownCases  = Cases - GEnv.ValFreq[0];
     UnknownRate = GEnv.ValFreq[0] / Cases;
 
     BaseInfo = ( ! GEnv.ValFreq[0] ? GlobalBaseInfo :
 		     DiscrKnownBaseInfo(KnownCases, MaxAttVal[Att]) );
-	//count[i] /= Cases;
-	//BaseInfo = BaseInfo *count[i];
-	//i++;
+	count[i] /= Cases;
+	BaseInfo = BaseInfo *count[i];
+	i++;
     PrevGain = ComputeGain(BaseInfo, UnknownRate, MaxAttVal[Att], KnownCases);
     PrevInfo = TotalInfo(GEnv.ValFreq, 0, MaxAttVal[Att]) / Cases;
     BestVal  = PrevGain / PrevInfo;
@@ -388,14 +390,17 @@ double alpha =4.9;
 	// GEnv.Freq[x][c]=   GEnv.Freq[x][c]/KnownCases;
 	Entr += pow(GEnv.Freq[x][c] ,alpha);
 	KnownCases += GEnv.Freq[x][c];	 
-	count[i] += GEnv.Freq[x][c]-GEnv.Freq[y][c];
+	//count[i] += GEnv.Freq[x][c]-GEnv.Freq[y][c];
     }
-	
+	/*if(count[i]<0)
+	{
+		count[i] = -1 * count[i];
+	}*/
 	Entr /= KnownCases;
         Entr = (Entr -1)*q;
-	count[i] /= KnownCases;
-	Entr *= count[i];
-	i++;
+	//count[i] /= KnownCases;
+	//Entr *= count[i];
+	//i++;
 	
 	GEnv.SubsetInfo[x] /= Cases;
         GEnv.SubsetInfo[x] =  (pow(GEnv.ValFreq[x],alpha)-1) * q;
@@ -474,15 +479,18 @@ double q = 1/(1-alpha);
 	//Entr -= F * Log(F);
 	Entr += pow(F,alpha);
 	KnownCases += F;
-	count[i] += GEnv.Freq[x][c]-GEnv.Freq[y][c];
+	//count[i] += GEnv.Freq[x][c]-GEnv.Freq[y][c];
 	   }
-					     
+	/*if(count[i]<0)
+	{
+		count[i] = -1 * count[i];
+	}*/				     
 	Entr /= KnownCases;
     	Entr =(Entr-1)*q;
 					     
-	count[i] /= KnownCases;					     
-	Entr *= count[i];
-	i++;					     
+	//count[i] /= KnownCases;					     
+	//Entr *= count[i];
+	//i++;					     
 	GEnv.MergeEntr[x][y] = Entr;
 }
 
