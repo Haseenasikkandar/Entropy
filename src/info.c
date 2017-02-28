@@ -70,7 +70,7 @@ double count[20];
 		count[i] = -1 * count[i];
 	}
 	
-    ThisInfo /= TotalCases;
+    ThisInfo /= Totalcases;
 	count[i] /= Totalcases;
 	BaseInfo = BaseInfo *count[i];
 	i++;
