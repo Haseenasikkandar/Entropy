@@ -390,7 +390,7 @@ double alpha =2.9;
 	if(count[i]<0)
 	{
 		count[i] = -1 * count[i];
-	}*/
+	}
 	Entr /= KnownCases;
         Entr = (Entr -1)*q;
 	count[i] /= KnownCases;
