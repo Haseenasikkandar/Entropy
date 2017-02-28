@@ -99,7 +99,7 @@ double q= 1/(1-alpha);
     ForEach(c, 1, MaxAttVal[Att])
     {
 	if ( GEnv.ValFreq[c] >= MINITEMS ) GEnv.ReasonableSubsets++;
-	     count[i] += GEnv.Freq[V1][v]-GEnv.Freq[V2][v];
+	     count[i] += GEnv.Freq[V1][c]-GEnv.Freq[V2][c];
     }
 
     if ( ! GEnv.ReasonableSubsets )
