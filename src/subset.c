@@ -474,7 +474,7 @@ double q = 1/(1-alpha);
 	//Entr -= F * Log(F);
 	Entr += pow(F,alpha);
 	KnownCases += F;
-	count[i] += GEnv.Freq[x[c]-GEnv.Freq[y[c];
+	count[i] += GEnv.Freq[x][c]-GEnv.Freq[y[c];
 	   }
 					     
 	Entr /= KnownCases;
