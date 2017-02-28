@@ -384,7 +384,7 @@ double alpha =8.9;
 	KnownCases += GEnv.Freq[x][c];	 
     }
 	
-	Entr /= pow(KnownCases,alpha);
+	Entr /= KnownCases;
         Entr = (Entr -1)*q;
 	GEnv.SubsetInfo[x] /= Cases;
         GEnv.SubsetInfo[x] =  (pow(GEnv.ValFreq[x],alpha)-1) * q;
@@ -463,7 +463,7 @@ double q = 1/(1-alpha);
 	Entr += pow(F,alpha);
 		 KnownCases += F;
 	    }
-	Entr /= pow(KnownCases,alpha);
+	Entr /= KnownCases;
     	Entr =(Entr-1)*q;	
 	GEnv.MergeEntr[x][y] = Entr;
 }
