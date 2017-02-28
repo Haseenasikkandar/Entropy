@@ -88,7 +88,7 @@ void EvalSubset(Attribute Att, CaseCount Cases)
     Boolean	Better;	
 double count[20];
 int i=0;
-double alpha =4.9;
+double alpha =2.9;
 double q= 1/(1-alpha);
     /*  First compute Freq[][], ValFreq[], base info, and the gain
 	and total info of a split on discrete attribute Att  */
@@ -99,7 +99,7 @@ double q= 1/(1-alpha);
     ForEach(c, 1, MaxAttVal[Att])
     {
 	if ( GEnv.ValFreq[c] >= MINITEMS ) GEnv.ReasonableSubsets++;
-	     count[i] += GEnv.Freq[V1][c]-GEnv.Freq[V2][c];
+	    
     }
 
     if ( ! GEnv.ReasonableSubsets )
@@ -109,18 +109,13 @@ double q= 1/(1-alpha);
 
 	return;
     }
-	if(count[i]<0)
-	{
-		count[i] = -1 * count[i];
-	}
+	
     KnownCases  = Cases - GEnv.ValFreq[0];
     UnknownRate = GEnv.ValFreq[0] / Cases;
 
     BaseInfo = ( ! GEnv.ValFreq[0] ? GlobalBaseInfo :
 		     DiscrKnownBaseInfo(KnownCases, MaxAttVal[Att]) );
-	count[i] /= Cases;
-	BaseInfo = BaseInfo *count[i];
-	i++;
+	
     PrevGain = ComputeGain(BaseInfo, UnknownRate, MaxAttVal[Att], KnownCases);
     PrevInfo = TotalInfo(GEnv.ValFreq, 0, MaxAttVal[Att]) / Cases;
     BestVal  = PrevGain / PrevInfo;
@@ -379,7 +374,7 @@ void Merge(DiscrValue x, DiscrValue y, CaseCount Cases)
     double	Entr=0;
     CaseCount	KnownCases=0;
     int		R, C;
-double alpha =4.9;
+double alpha =2.9;
 	int i=0;
 	double q=1/(1-alpha);
 	double count[20];
@@ -457,7 +452,7 @@ void EvaluatePair(DiscrValue x, DiscrValue y, CaseCount Cases)
     ClassNo	c;
     double	Entr=0;
     CaseCount	KnownCases=0, F;
-double alpha=4.9;
+double alpha=2.9;
 	int i=0;
 	double count[20];
 double q = 1/(1-alpha);
