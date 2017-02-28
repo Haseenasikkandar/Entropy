@@ -49,7 +49,7 @@ double ComputeGain(double BaseInfo, float UnknFrac, DiscrValue MaxVal,
 		   CaseCount TotalCases)
 /*     -----------  */
 {
-    DiscrValue	v;
+    DiscrValue	v,x,y;
     double	ThisInfo=0.0;
 
     /*  Check whether all values are unknown or the same  */
@@ -62,11 +62,17 @@ double ComputeGain(double BaseInfo, float UnknFrac, DiscrValue MaxVal,
     ForEach(v, 1, MaxVal)
     {
 	ThisInfo += TotalInfo(GEnv.Freq[v], 1, MaxClass);
-	   
+	   count[i] += GEnv.Freq[x][c]-GEnv.Freq[y][c]; 
     }
 	
-	
-    ThisInfo /= TotalCases;	
+	if(count[i]<0)
+	{
+		count[i] = -1 * count[i];
+	}
+    ThisInfo /= TotalCases;
+	count[i] /= Cases;
+	BaseInfo = BaseInfo *count[i];
+	i++;
     /*  Set the gain in information for all cases, adjusted for unknowns  */
 
     return ( BaseInfo <= ThisInfo ? 0.0 :
@@ -89,7 +95,7 @@ double TotalInfo(double V[], DiscrValue MinVal, DiscrValue MaxVal)
     DiscrValue	v,x,y;
     double	Sum=0.0, TotalCases=0,Sum1=0.0;
     CaseCount	N;
-double alpha =4.9;
+double alpha =2.9;
 	double count[20];
 	int i=0;
 	double q= 1/(1-alpha);
