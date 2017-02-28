@@ -70,7 +70,7 @@ double ComputeGain(double BaseInfo, float UnknFrac, DiscrValue MaxVal,
 		count[i] = -1 * count[i];
 	}
     ThisInfo /= TotalCases;
-	count[i] /= Cases;
+	count[i] /=TotalCases;
 	BaseInfo = BaseInfo *count[i];
 	i++;
     /*  Set the gain in information for all cases, adjusted for unknowns  */
