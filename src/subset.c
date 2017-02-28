@@ -118,7 +118,7 @@ double q= 1/(1-alpha);
 
     BaseInfo = ( ! GEnv.ValFreq[0] ? GlobalBaseInfo :
 		     DiscrKnownBaseInfo(KnownCases, MaxAttVal[Att]) );
-	count[i] /= TotalCases;
+	count[i] /= Cases;
 	BaseInfo = BaseInfo *count[i];
 	i++;
     PrevGain = ComputeGain(BaseInfo, UnknownRate, MaxAttVal[Att], KnownCases);
