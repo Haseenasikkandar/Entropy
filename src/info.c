@@ -63,7 +63,7 @@ double ComputeGain(double BaseInfo, float UnknFrac, DiscrValue MaxVal,
     ForEach(v, 1, MaxVal)
     {
 	ThisInfo += TotalInfo(GEnv.Freq[v], 1, MaxClass);
-	   count[i] += GEnv.Freq[x][c]-GEnv.Freq[y][c]; 
+	   count[i] += GEnv.Freq[x][v]-GEnv.Freq[y][v]; 
     }
 	
 	if(count[i]<0)
