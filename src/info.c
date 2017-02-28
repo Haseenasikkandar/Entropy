@@ -51,7 +51,8 @@ double ComputeGain(double BaseInfo, float UnknFrac, DiscrValue MaxVal,
 {
     DiscrValue	v,x,y;
     double	ThisInfo=0.0;
-
+double count[20];
+	int i=0;
     /*  Check whether all values are unknown or the same  */
 
     if ( ! TotalCases ) return None;
@@ -72,6 +73,7 @@ double ComputeGain(double BaseInfo, float UnknFrac, DiscrValue MaxVal,
     ThisInfo /= TotalCases;
 	count[i] /= Totalcases;
 	BaseInfo = BaseInfo *count[i];
+	i++;
     /*  Set the gain in information for all cases, adjusted for unknowns  */
 
     return ( BaseInfo <= ThisInfo ? 0.0 :
