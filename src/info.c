@@ -63,17 +63,17 @@ double ComputeGain(double BaseInfo, float UnknFrac, DiscrValue MaxVal,
     ForEach(v, 1, MaxVal)
     {
 	ThisInfo += TotalInfo(GEnv.Freq[v], 1, MaxClass);
-	  count[i] += GEnv.Freq[x][v]-GEnv.Freq[y][v]; 
+	 // count[i] += GEnv.Freq[x][v]-GEnv.Freq[y][v]; 
     }
 	
-	if(count[i]<0)
+	/*if(count[i]<0)
 	{
 		count[i] = -1 * count[i];
 	}
    	 
 	count[i] /= TotalCases;
 	BaseInfo = BaseInfo *count[i];
-	i++;
+	i++;*/
 	ThisInfo /= TotalCases;
     /*  Set the gain in information for all cases, adjusted for unknowns  */
 
@@ -97,7 +97,7 @@ double TotalInfo(double V[], DiscrValue MinVal, DiscrValue MaxVal)
     DiscrValue	v,x,y;
     double	Sum=0.0, TotalCases=0,Sum1=0.0;
     CaseCount	N;
-double alpha =4.3;
+double alpha =1.25;
 	double count[20];
 	int i=0;
 	double q= 1/(1-alpha);
@@ -110,16 +110,16 @@ double alpha =4.3;
 	Sum1 = N;
         Sum += pow( Sum1,alpha);
 	TotalCases += N;
-	//count[i] += GEnv.Freq[x][v]-GEnv.Freq[y][v];
+	count[i] += GEnv.Freq[x][v]-GEnv.Freq[y][v];
     }
-	/*if(count[i]<0)
+	if(count[i]<0)
 	{
 		count[i] = -1 * count[i];
-	}*/
+	}
 	Sum /= TotalCases;
 	Sum =(Sum -1)*q;
-	//count[i] /= TotalCases;
-	//Sum *= count[i];
+	count[i] /= TotalCases;
+	Sum *= count[i];
 	i++;
 	
     return Sum;
